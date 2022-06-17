@@ -17,9 +17,12 @@ class AnimalsController extends Controller
         return view('animals/list', compact('animals'));
     }
 
-    public function detail($animal_id)
+    public function detail($id)
     {
-        // $animal = Animal::                
+
+        $animal = Animal::findOrFail($id);
+        // dd(detail(1));  
+        return view('animals.detail', compact('animal'));
     }
     public function search(Request $request)
     {
@@ -45,7 +48,7 @@ class AnimalsController extends Controller
 
     public function edit($id)
     {
-        $animals = Animal::where('id', $id)->first();
+        $animals = Animal::findOrFail($id);
 
         return view('animals.edit', compact('animals'));
     }
@@ -59,7 +62,7 @@ class AnimalsController extends Controller
             ]
         );
 
-        $animals = Animal::get($id);
+        $animals = Animal::where($id);
 
         $animals->age = $request->input('age');
         $animals->weight = $request->input('weight');
@@ -69,5 +72,33 @@ class AnimalsController extends Controller
         session()->flash('success_message', 'New animals registered');
 
         return redirect(url('/animals/detail/' . $animals->id));
+    }
+
+    public function create()
+    {
+
+        $animal = new Animal;
+
+
+
+
+        return view('animals/create', compact('animal'));
+    }
+
+    public function store(AnimalRequest $request)
+    {
+        $animal = new Animal;
+
+        $animal->name = $request->input('name');
+        $animal->species = $request->input('species');
+        $animal->breed = $request->input('breed');
+        $animal->age = $request->input('age');
+
+
+        $animal->save();
+
+        session()->flash('success_message', 'New animal registered.');
+
+        return redirect(url('/animals/detail/' . $animal->id));
     }
 }

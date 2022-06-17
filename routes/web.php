@@ -27,5 +27,7 @@ Route::get('/owners/search', ['App\Http\Controllers\OwnerController', 'search'])
 
 Route::get('/search', ['App\Http\Controllers\AnimalsController', 'search'])->name('search');
 Route::get('/animals/{id}/edit', ['App\Http\Controllers\AnimalsController', 'edit'])->name('animal.edit');
-
 Route::put('/animals/{id}', ['App\Http\Controllers\AnimalsController', 'update'])->name('animal.update');
+
+Route::get('/animals/create', ['App\Http\Controllers\AnimalsController', 'create']);
+Route::post('/animals', ['App\Http\Controllers\AnimalsController', 'store']);

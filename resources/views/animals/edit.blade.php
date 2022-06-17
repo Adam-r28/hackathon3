@@ -10,7 +10,7 @@
 
     <h1>Edit an animal</h1>
 
-    <form action="{{ action('AnimalsController@edit') }}" method="post">
+    <form action="{{ action('App\Http\Controllers\AnimalsController@update', $animals->id) }}" method="post">
         @csrf
 
             <label>Age:</label>
@@ -27,7 +27,7 @@
                 value="{{ old('weight', $animals->weight) }}"
             >
 
-            <label>Address:</label>
+            {{-- <label>Address:</label>
             <input
                 type="text"
                 name="address"
@@ -39,7 +39,7 @@
                 type="text"
                 name="phone"
                 value="{{ old('phone', $owners->phone) }}"
-            >
+            > --}}
 
         <button>Save</button>
 
