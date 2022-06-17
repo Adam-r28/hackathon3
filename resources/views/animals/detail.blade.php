@@ -30,7 +30,10 @@
     <p> {{$animal->owner->phone ? $animal->owner->phone : "Phone was not registred" }} </p>
     <h3>Adress: </h3>
     <p> {{$animal->owner->adress ? $animal->owner->adress : "Adress was not registred" }} </p>
+    <a href= "animal/{{$animal->id}}/edit">EDIT</a>
     @endif
+
+
 
 </body>
 </html>
