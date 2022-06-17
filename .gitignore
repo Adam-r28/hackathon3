@@ -13,3 +13,5 @@ yarn-error.log
 /.idea
 /.vscode
 /public/images/pets
+*.DS_Store
+/.DS_Store
