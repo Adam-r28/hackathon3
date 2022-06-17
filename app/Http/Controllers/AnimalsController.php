@@ -19,11 +19,10 @@ class AnimalsController extends Controller
 
     public function detail($id)
     {
-        
+
         $animal = Animal::findOrFail($id);
         // dd(detail(1));  
         return view('animals.detail', compact('animal'));
-                      
     }
     public function search(Request $request)
     {
@@ -47,14 +46,42 @@ class AnimalsController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $animals = Animal::findOrFail($id);
+
+        return view('animals.edit', compact('animals'));
+    }
+
+    public function update($id, AnimalRequest $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'name' => 'required',
+            ]
+        );
+
+        $animals = Animal::where($id);
+
+        $animals->age = $request->input('age');
+        $animals->weight = $request->input('weight');
+
+        $animals->save();
+
+        session()->flash('success_message', 'New animals registered');
+
+        return redirect(url('/animals/detail/' . $animals->id));
+    }
+
     public function create()
     {
-        
+
         $animal = new Animal;
 
 
 
-       
+
         return view('animals/create', compact('animal'));
     }
 
@@ -66,12 +93,12 @@ class AnimalsController extends Controller
         $animal->species = $request->input('species');
         $animal->breed = $request->input('breed');
         $animal->age = $request->input('age');
-        
+
 
         $animal->save();
 
         session()->flash('success_message', 'New animal registered.');
 
-        return redirect( url('/animals/detail/'.$animal->id) );
+        return redirect(url('/animals/detail/' . $animal->id));
     }
 }
