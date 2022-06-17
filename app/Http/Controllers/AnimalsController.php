@@ -16,9 +16,13 @@ class AnimalsController extends Controller
         return view('animals/list', compact('animals'));
     }
 
-    public function detail($animal_id)
+    public function detail($id)
     {
-        // $animal = Animal::                
+        
+        $animal = Animal::findOrFail($id);
+        // dd(detail(1));  
+        return view('animals.detail', compact('animal'));
+                      
     }
     public function search(Request $request)
     {
