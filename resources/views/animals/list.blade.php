@@ -11,9 +11,23 @@
     
     <ul>
         @foreach($animals as $animal)
-            <li> {{$animal->name}}</li>
+            <li>Pet's name: {{$animal->name}},Owner's name: {{$animal->owner->first_name}} {{$animal->owner->surname}}, <img src="images/pets/{{$animal->image->path}}"alt="Pet's image">
+            </li>
         @endforeach
     </ul>
+
+    {{-- <tr>
+        <th>Pet's name: </th>
+        <th>Photo</th>
+        <th>Owner's name: </th>
+    </tr>
+    @foreach($animals as $animal)
+    <tr>
+        <td>{{$animal->name}}</td>
+        <td>{{$animal->name}}</td>
+        <td>{{$animal->owner->first_name}}{{$animal->owner->surname}}</td>
+    </tr>
+     @endforeach --}}
 
 </body>
 </html>
