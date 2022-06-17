@@ -9,7 +9,7 @@
 <body>
     
    <h1> Animal details: </h1>
-   <img src="images/pets/{{$animal->image->path}}" alt="Pet's image">
+   {{-- <img src="images/pets/{{$animal->image->path}}" alt="Pet's image"> --}}
     <h3>Name: </h3>
    <p> {{$animal->name}} </p>
    <h3>Species: </h3>
@@ -22,6 +22,7 @@
    <p> {{$animal->weight}} kgs. </p>
     <h1> Animal's owner details: </h1>
     <h3>Name: </h3>
+    @if($animal->owner)
     <p> {{$animal->owner->first_name}} {{$animal->owner->surname}} </p>
     <h3>Email: </h3>
     <p> {{$animal->owner->email ? $animal->owner->email : "Email was not registred" }} </p>
@@ -29,6 +30,7 @@
     <p> {{$animal->owner->phone ? $animal->owner->phone : "Phone was not registred" }} </p>
     <h3>Adress: </h3>
     <p> {{$animal->owner->adress ? $animal->owner->adress : "Adress was not registred" }} </p>
+    @endif
 
 </body>
 </html>

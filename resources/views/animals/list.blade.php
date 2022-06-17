@@ -11,7 +11,7 @@
     
     <ul>
         @foreach($animals as $animal)
-            <li>Pet's name: <a href="/animals/detail/{{$animal->id}}"">{{$animal->name}}</a>, Owner's name: {{$animal->owner->first_name}} {{$animal->owner->surname}}, <img src="images/pets/{{$animal->image->path}}"alt="Pet's image">
+            <li>Pet's name: <a href="/animals/detail/{{$animal->id}}"">{{$animal->name}}</a>, @if($animal->owner)Owner's name: {{$animal->owner->first_name}} {{$animal->owner->surname}}@endif, @if($animal->image)<img src="images/pets/{{$animal->image->path}}"alt="Pet's image">@endif
             </li>
         @endforeach
     </ul>
