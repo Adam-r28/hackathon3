@@ -26,3 +26,6 @@ Route::get('/owners/detail', ['App\Http\Controllers\OwnerController', 'detail'])
 Route::get('/owners/search', ['App\Http\Controllers\OwnerController', 'search']);
 
 Route::get('/search', ['App\Http\Controllers\AnimalsController', 'search'])->name('search');
+
+Route::get('/animals/create', ['App\Http\Controllers\AnimalsController', 'create']);
+Route::post('/animals', ['App\Http\Controllers\AnimalsController', 'store']);

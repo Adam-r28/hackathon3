@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Animal;
 use App\Models\Owner;
 use App\Models\Image;
+use App\Http\Requests\AnimalRequest;
 
 class AnimalsController extends Controller
 {
@@ -40,5 +41,33 @@ class AnimalsController extends Controller
             'search_term' => $search_term,
             'results' => $results
         ]);
+    }
+
+    public function create()
+    {
+        
+        $animal = new Animal;
+
+
+
+       
+        return view('animals/create', compact('animal'));
+    }
+
+    public function store(AnimalRequest $request)
+    {
+        $animal = new Animal;
+
+        $animal->name = $request->input('name');
+        $animal->species = $request->input('species');
+        $animal->breed = $request->input('breed');
+        $animal->age = $request->input('age');
+        
+
+        $animal->save();
+
+        session()->flash('success_message', 'New animal registered.');
+
+        return redirect( url('/animals/detail/'.$animal->id) );
     }
 }
